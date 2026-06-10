@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>XV Años | Fotoshot Studio - Fotografía Profesional</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+</head>
+<body>
+    <!-- HEADER / NAVEGACIÓN -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="logo.png" alt="Fotoshot Studio" class="logo-img" />
+                <span class="logo-text">fotoshot</span>
+            </div>
+            <nav class="nav">
+                <a href="#inicio" class="nav-link">Inicio</a>
+                <a href="#nosotros" class="nav-link">Nosotros</a>
+                <a href="#servicios" class="nav-link">Servicios</a>
+                <a href="#galeria" class="nav-link">Galería</a>
+                <a href="#paquetes" class="nav-link">Paquetes</a>
+                <a href="#contacto" class="nav-link">Contacto</a>
+            </nav>
+            <button class="cta-header">Contáctanos</button>
+        </div>
+    </header>
+ 
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="hero">
+            <div class="hero-content">
+                <h1>XV años que se viven, no solo se fotografían</h1>
+                <p class="hero-subtitle">
+                    Cada XV es distinta. Algunos sueñan con un vestido enorme, otros con tenis, 
+                    música y libertad. Nosotros no imponemos un estilo, lo producimos contigo.
+                </p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/528332366963?text=Hola,%20me%20gustaría%20conocer%20más%20sobre%20los%20paquetes%20de%20XV%20años" 
+                       class="btn btn-primary" target="_blank">
+                        Solicitar información
+                    </a>
+                    <a href="#paquetes" class="btn btn-secondary">Ver paquetes</a>
+                </div>
+            </div>
+            <div class="hero-gallery">
+                <div class="hero-image hero-main">
+                    <img src="hero-01.jpg" alt="Sesión XV años" />
+                </div>
+                <div class="hero-image hero-secondary">
+                    <img src="hero-02.jpg" alt="Sesión XV años" />
+                </div>
+            </div>
+        </section>
+ 
+        <!-- SOBRE NOSOTROS -->
+        <section id="nosotros" class="about">
+            <div class="about-content">
+                <h2>Más de 15 años documentando emociones</h2>
+                <p class="about-intro">
+                    He producido y documentado celebraciones reales, participando en más de 1,500 eventos. 
+                    Fui productor del programa de televisión ExpoSodas TV (Televisa del Golfo) y creador del 
+                    reality "El Show de mis XV".
+                </p>
+                <p class="about-philosophy">
+                    Aprendí algo clave: <strong>una gran fiesta no se improvisa, se produce.</strong>
+                </p>
+                <p class="about-mission">
+                    Hoy, junto con mi equipo, me dedico a crear XV años que se sienten, no solo que se ven bien.
+                </p>
+ 
+                <div class="about-grid">
+                    <div class="about-card">
+                        <h3>1,500+</h3>
+                        <p>Eventos documentados</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>15+</h3>
+                        <p>Años de experiencia</p>
+                    </div>
+                    <div class="about-card">
+                        <h3>100%</h3>
+                        <p>Dedicación a tu evento</p>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <img src="about-01.jpg" alt="Fotoshot Studio en acción" />
+            </div>
+        </section>
+ 
+        <!-- NUESTRO PROCESO -->
+        <section id="servicios" class="process">
+            <h2>Nuestra ruta de la emoción</h2>
+            <p class="section-subtitle">Un proceso pensado para capturar cada momento con autenticidad</p>
+ 
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-number">1</div>
+                    <h3>Pre Sesión</h3>
+                    <p>Conocemos a la XV y la ayudamos a sentirse cómoda frente a la cámara. 
+                       Discutimos ideas, conceptos y visiones para su sesión.</p>
+                </div>
+ 
+                <div class="process-card">
+                    <div class="process-number">2</div>
+                    <h3>Sesión Casual</h3>
+                    <p>Desarrollamos ideas y conceptos que reflejen su personalidad. 
+                       Fotografías auténticas en locaciones especiales que resalten su estilo.</p>
+                </div>
+ 
+                <div class="process-card">
+                    <div class="process-number">3</div>
+                    <h3>Sesión XV</h3>
+                    <p>Creamos imágenes que se convierten en parte de la historia de sus XV años. 
+                       Elegancia, profesionalismo y emoción en cada shot.</p>
+                </div>
+ 
+                <div class="process-card">
+                    <div class="process-number">4</div>
+                    <h3>Fiesta</h3>
+                    <p>Documentamos la emoción real: familia, amigos y todos los momentos 
+                       irrepetibles del evento con foto y video profesional.</p>
+                </div>
+            </div>
+        </section>
+ 
+        <!-- GALERÍA -->
+        <section id="galeria" class="gallery">
+            <h2>Nuestro trabajo</h2>
+            <p class="section-subtitle">Momentos capturados con emoción y profesionalismo</p>
+ 
+            <div class="gallery-filters">
+                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn" data-filter="casual">Sesiones Casuales</button>
+                <button class="filter-btn" data-filter="formal">Sesiones XV</button>
+                <button class="filter-btn" data-filter="fiesta">Fiestas</button>
+            </div>
+ 
+            <div class="gallery-grid">
+                <!-- CASUAL -->
+                <div class="gallery-item" data-category="casual">
+                    <img src="casual-01.jpg" alt="Sesión casual XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="casual">
+                    <img src="casual-02.jpg" alt="Sesión casual XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="casual">
+                    <img src="casual-03.jpg" alt="Sesión casual XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="casual">
+                    <img src="casual-04.jpg" alt="Sesión casual XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="casual">
+                    <img src="casual-05.jpg" alt="Sesión casual XV años" loading="lazy" />
+                </div>
+ 
+                <!-- FORMAL -->
+                <div class="gallery-item" data-category="formal">
+                    <img src="formal-01.jpg" alt="Sesión XV años con vestido" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="formal">
+                    <img src="formal-02.jpg" alt="Sesión XV años con vestido" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="formal">
+                    <img src="formal-03.jpg" alt="Sesión XV años con vestido" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="formal">
+                    <img src="formal-04.jpg" alt="Sesión XV años con vestido" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="formal">
+                    <img src="formal-05.jpg" alt="Sesión XV años con vestido" loading="lazy" />
+                </div>
+ 
+                <!-- FIESTA -->
+                <div class="gallery-item" data-category="fiesta">
+                    <img src="fiesta-01.jpg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="fiesta">
+                    <img src="fiesta-02.jpg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="fiesta">
+                    <img src="fiesta-03.jpg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="fiesta">
+                    <img src="fiesta-04.jpg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-category="fiesta">
+                    <img src="fiesta-05.jpg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                </div>
+            </div>
+        </section>
+ 
+        <!-- REELS / INSTAGRAM -->
+        <section class="reels">
+            <h2>Momentos en movimiento</h2>
+            <p class="section-subtitle">Sigue nuestras historias en Instagram</p>
+            
+            <div class="reels-container">
+                <a href="https://instagram.com/fotoshotreneceja" target="_blank" class="reel-link">
+                    <div class="reel-placeholder">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M30 0C13.4 0 0 13.4 0 30C0 46.6 13.4 60 30 60C46.6 60 60 46.6 60 30C60 13.4 46.6 0 30 0ZM30 54C16.2 54 6 43.8 6 30C6 16.2 16.2 6 30 6C43.8 6 54 16.2 54 30C54 43.8 43.8 54 30 54Z" fill="#E4405F"/>
+                            <path d="M30 13.5C20.9 13.5 13.5 20.9 13.5 30C13.5 39.1 20.9 46.5 30 46.5C39.1 46.5 46.5 39.1 46.5 30C46.5 20.9 39.1 13.5 30 13.5ZM30 40.5C24.7 40.5 19.5 35.3 19.5 30C19.5 24.7 24.7 19.5 30 19.5C35.3 19.5 40.5 24.7 40.5 30C40.5 35.3 35.3 40.5 30 40.5Z" fill="#E4405F"/>
+                            <circle cx="44.5" cy="15.5" r="2.5" fill="#E4405F"/>
+                        </svg>
+                        <p>@fotoshotreneceja</p>
+                        <span>Ver más en Instagram</span>
+                    </div>
+                </a>
+ 
+                <a href="https://facebook.com/fotoshotestudio" target="_blank" class="reel-link">
+                    <div class="reel-placeholder facebook">
+                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
+                            <path d="M30 0C13.4 0 0 13.4 0 30C0 46.6 13.4 60 30 60C46.6 60 60 46.6 60 30C60 13.4 46.6 0 30 0ZM36 30H33V45H30V30H27V27H30V25.5C30 23.5 31 21.5 33.5 21.5C34.5 21.5 35.2 21.6 35.7 21.7V24.5H34C33 24.5 32.5 25 32.5 26V27H35.2L34.8 30H32.5V45H36V30Z" fill="#1877F2"/>
+                        </svg>
+                        <p>@fotoshotestudio</p>
+                        <span>Ver más en Facebook</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+ 
+        <!-- PAQUETES -->
+        <section id="paquetes" class="packages">
+            <h2>Nuestros paquetes</h2>
+            <p class="section-subtitle">Elige el que mejor se adapte a tu visión</p>
+ 
+            <div class="packages-grid">
+                <!-- PAQUETE ESENCIAL -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Paquete Esencial</h3>
+                        <p class="package-desc">Cobertura de los momentos principales</p>
+                    </div>
+                    <div class="package-price">
+                        <span class="price">$12,000</span>
+                    </div>
+                    <ul class="package-features">
+                        <li>✓ Cobertura 4 horas</li>
+                        <li>✓ Foto reportaje + video</li>
+                        <li>✓ Sesión casual y XV</li>
+                        <li>✓ 30 fotos 5x7"</li>
+                        <li>✓ Ampliaciones 16x20" y 12x18"</li>
+                    </ul>
+                    <a href="https://wa.me/528332366963?text=Me%20interesa%20el%20Paquete%20Esencial%20de%20XV%20años" 
+                       class="btn btn-outline" target="_blank">
+                        Solicitar
+                    </a>
+                </div>
+ 
+                <!-- PAQUETE EXPERIENCIA -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Paquete Experiencia</h3>
+                        <p class="package-desc">Más tiempo para documentar la fiesta</p>
+                    </div>
+                    <div class="package-price">
+                        <span class="price">$14,000</span>
+                    </div>
+                    <ul class="package-features">
+                        <li>✓ Todo lo anterior</li>
+                        <li>✓ Cobertura 5 horas</li>
+                        <li>✓ Documentación más completa</li>
+                        <li>✓ Recepción e inicio de fiesta</li>
+                    </ul>
+                    <a href="https://wa.me/528332366963?text=Me%20interesa%20el%20Paquete%20Experiencia%20de%20XV%20años" 
+                       class="btn btn-outline" target="_blank">
+                        Solicitar
+                    </a>
+                </div>
+ 
+                <!-- PAQUETE PRODUCCIÓN -->
+                <div class="package-card featured">
+                    <div class="package-badge">RECOMENDADO</div>
+                    <div class="package-header">
+                        <h3>Paquete Producción</h3>
+                        <p class="package-desc">Para registrar la historia completa</p>
+                    </div>
+                    <div class="package-price">
+                        <span class="price">$18,000</span>
+                    </div>
+                    <ul class="package-features">
+                        <li>✓ Todo lo anterior</li>
+                        <li>✓ Cobertura 6 horas</li>
+                        <li>✓ Video Highlights + USB</li>
+                        <li>✓ Documentación profesional</li>
+                    </ul>
+                    <a href="https://wa.me/528332366963?text=Me%20interesa%20el%20Paquete%20Producci%C3%B3n%20de%20XV%20años" 
+                       class="btn btn-primary" target="_blank">
+                        Solicitar
+                    </a>
+                </div>
+ 
+                <!-- PAQUETE SIGNATURE -->
+                <div class="package-card">
+                    <div class="package-header">
+                        <h3>Paquete Signature</h3>
+                        <p class="package-desc">Cobertura amplia, sin perder nada</p>
+                    </div>
+                    <div class="package-price">
+                        <span class="price">$22,000</span>
+                    </div>
+                    <ul class="package-features">
+                        <li>✓ La experiencia completa</li>
+                        <li>✓ Cobertura 7 horas</li>
+                        <li>✓ Planeación visual previa</li>
+                        <li>✓ Exhibición 10 ampliaciones 11x14"</li>
+                        <li>✓ Máxima documentación</li>
+                    </ul>
+                    <a href="https://wa.me/528332366963?text=Me%20interesa%20el%20Paquete%20Signature%20de%20XV%20años" 
+                       class="btn btn-outline" target="_blank">
+                        Solicitar
+                    </a>
+                </div>
+            </div>
+ 
+            <!-- SERVICIOS ADICIONALES -->
+            <div class="additional-services">
+                <h3>Servicios Adicionales</h3>
+                <div class="services-grid">
+                    <div class="service-item">
+                        <h4>Biombo + 10 ampliaciones</h4>
+                        <p class="service-price">$5,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Photobook 8x24" (20 páginas)</h4>
+                        <p class="service-price">$5,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Todas las fotos de sesiones</h4>
+                        <p class="service-price">$4,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Fotógrafo adicional</h4>
+                        <p class="service-price">$6,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Camarógrafo adicional</h4>
+                        <p class="service-price">$6,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Hora extra o Getting Ready</h4>
+                        <p class="service-price">$4,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Grabación con dron</h4>
+                        <p class="service-price">$4,000</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Highlights video</h4>
+                        <p class="service-price">$3,500</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>Retoque foto extra</h4>
+                        <p class="service-price">$250</p>
+                    </div>
+                    <div class="service-item">
+                        <h4>3 maquillajes y peinados</h4>
+                        <p class="service-price">$6,800</p>
+                    </div>
+                </div>
+            </div>
+ 
+            <!-- SESIÓN SOLO CASUAL -->
+            <div class="solo-session">
+                <h3>¿Solo quieres tu sesión de XV?</h3>
+                <p>Perfecto. Ofrecemos sesiones personalizadas</p>
+                <div class="session-details">
+                    <ul>
+                        <li>Concepto personalizado</li>
+                        <li>30 fotos 5x7"</li>
+                        <li>Ampliación 16x20" y 12x18" enmarcada y texturizada</li>
+                    </ul>
+                    <p class="session-price">Desde <strong>$7,000</strong></p>
+                </div>
+                <a href="https://wa.me/528332366963?text=Me%20interesa%20solo%20una%20sesi%C3%B3n%20de%20XV%20a%C3%B1os" 
+                   class="btn btn-primary" target="_blank">
+                    Solicitar sesión
+                </a>
+            </div>
+        </section>
+ 
+        <!-- CONTACTO -->
+        <section id="contacto" class="contact">
+            <h2>Hablemos de tu XV</h2>
+            <p class="section-subtitle">Nos encanta conocer nuevas historias</p>
+ 
+            <div class="contact-info">
+                <div class="contact-item">
+                    <h3>📍 Ubicación</h3>
+                    <p>Martock 210-A<br>Col. Martock, Tampico, Tam.</p>
+                </div>
+                <div class="contact-item">
+                    <h3>📞 Teléfono</h3>
+                    <p><a href="tel:+528332366963">833 236 6963</a></p>
+                </div>
+                <div class="contact-item">
+                    <h3>📱 Redes Sociales</h3>
+                    <p>
+                        <a href="https://instagram.com/fotoshotreneceja" target="_blank">Instagram</a> · 
+                        <a href="https://facebook.com/fotoshotestudio" target="_blank">Facebook</a>
+                    </p>
+                </div>
+            </div>
+ 
+            <div class="contact-cta">
+                <p>Escríbenos ahora y cuéntanos sobre tu XV</p>
+                <a href="https://wa.me/528332366963?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20XV%20a%C3%B1os" 
+                   class="btn btn-primary btn-large" target="_blank">
+                    Contactar por WhatsApp
+                </a>
+            </div>
+        </section>
+    </main>
+ 
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2026 Fotoshot Studio. Todos los derechos reservados.</p>
+            <p>Fotografía y video profesional para XV años</p>
+        </div>
+    </footer>
+ 
+    <script src="script.js"></script>
+</body>
+</html>
+ 
