@@ -112,19 +112,36 @@ const nextBtn = document.querySelector('.modal-next');
 const currentImageSpan = document.querySelector('.current-image');
 const totalImagesSpan = document.querySelector('.total-images');
 
-// Abrir modal al hacer click en una imagen
+// Configurar listeners de imágenes
 function setupImageClickListeners() {
-    const items = document.querySelectorAll('.gallery-item:not(.hidden)');
-    visibleImages = Array.from(items);
-    totalImagesSpan.textContent = visibleImages.length;
+    // Obtener SOLO las imágenes que NO están ocultas
+    const items = document.querySelectorAll('.gallery-item');
+    visibleImages = [];
     
     items.forEach((item, index) => {
-        item.addEventListener('click', function() {
-            if (!this.classList.contains('hidden')) {
-                currentImageIndex = index;
-                openModal(this.querySelector('img'));
-            }
-        }, {once: false});
+        // Solo agregar las que no están ocultas
+        if (!item.classList.contains('hidden')) {
+            visibleImages.push(item);
+        }
+    });
+    
+    console.log('Imágenes visibles detectadas:', visibleImages.length);
+    totalImagesSpan.textContent = visibleImages.length;
+    
+    // Agregar event listeners a TODAS las imágenes visibles
+    visibleImages.forEach((item, index) => {
+        // Remover listeners anteriores
+        const newItem = item.cloneNode(true);
+        item.parentNode.replaceChild(newItem, item);
+        
+        // Agregar nuevo listener
+        newItem.addEventListener('click', function() {
+            currentImageIndex = index;
+            openModal(newItem.querySelector('img'));
+        });
+        
+        // Actualizar en el array
+        visibleImages[index] = newItem;
     });
 }
 
