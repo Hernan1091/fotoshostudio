@@ -84,11 +84,21 @@ document.addEventListener('DOMContentLoaded', function() {
                 item.classList.add('hidden');
             }
         });
+        
+        // Actualizar listeners de imágenes después de cambiar filtros
+        setupImageClickListeners();
     }
 
     // Inicializar galería con valores por defecto
     updateGallery();
 });
+
+// ========================
+// VARIABLES DEL MODAL
+// ========================
+
+let currentImageIndex = 0;
+let visibleImages = [];
 
 // ========================
 // MODAL DE IMAGEN AMPLIADA
@@ -97,39 +107,71 @@ document.addEventListener('DOMContentLoaded', function() {
 const imageModal = document.getElementById('imageModal');
 const modalImage = document.querySelector('.modal-image');
 const closeBtn = document.querySelector('.close');
+const prevBtn = document.querySelector('.modal-prev');
+const nextBtn = document.querySelector('.modal-next');
+const currentImageSpan = document.querySelector('.current-image');
+const totalImagesSpan = document.querySelector('.total-images');
 
 // Abrir modal al hacer click en una imagen
-document.querySelectorAll('.gallery-item:not(.hidden) img').forEach(img => {
-    img.parentElement.addEventListener('click', function() {
-        // Evitar abrir modal si el item está oculto
-        if (!this.classList.contains('hidden')) {
-            const imgSrc = this.querySelector('img').src;
-            const imgAlt = this.querySelector('img').alt;
-            
-            modalImage.src = imgSrc;
-            modalImage.alt = imgAlt;
-            imageModal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-    });
-});
-
-// Re-agregar listeners cuando se actualiza la galería
-function addImageModalListeners() {
-    document.querySelectorAll('.gallery-item:not(.hidden) img').forEach(img => {
-        img.parentElement.addEventListener('click', function() {
+function setupImageClickListeners() {
+    const items = document.querySelectorAll('.gallery-item:not(.hidden)');
+    visibleImages = Array.from(items);
+    totalImagesSpan.textContent = visibleImages.length;
+    
+    items.forEach((item, index) => {
+        item.addEventListener('click', function() {
             if (!this.classList.contains('hidden')) {
-                const imgSrc = this.querySelector('img').src;
-                const imgAlt = this.querySelector('img').alt;
-                
-                modalImage.src = imgSrc;
-                modalImage.alt = imgAlt;
-                imageModal.classList.add('show');
-                document.body.style.overflow = 'hidden';
+                currentImageIndex = index;
+                openModal(this.querySelector('img'));
             }
-        });
+        }, {once: false});
     });
 }
+
+function openModal(imgElement) {
+    const imgSrc = imgElement.src;
+    const imgAlt = imgElement.alt;
+    
+    modalImage.src = imgSrc;
+    modalImage.alt = imgAlt;
+    currentImageSpan.textContent = currentImageIndex + 1;
+    totalImagesSpan.textContent = visibleImages.length;
+    
+    imageModal.classList.add('show');
+    document.body.style.overflow = 'hidden';
+    
+    updateNavButtons();
+}
+
+function updateNavButtons() {
+    const totalImages = visibleImages.length;
+    
+    // Deshabilitar botón anterior si es la primera imagen
+    prevBtn.disabled = currentImageIndex === 0;
+    
+    // Deshabilitar botón siguiente si es la última imagen
+    nextBtn.disabled = currentImageIndex === totalImages - 1;
+}
+
+function showNextImage() {
+    if (currentImageIndex < visibleImages.length - 1) {
+        currentImageIndex++;
+        const img = visibleImages[currentImageIndex].querySelector('img');
+        openModal(img);
+    }
+}
+
+function showPrevImage() {
+    if (currentImageIndex > 0) {
+        currentImageIndex--;
+        const img = visibleImages[currentImageIndex].querySelector('img');
+        openModal(img);
+    }
+}
+
+// Event listeners para navegación
+prevBtn.addEventListener('click', showPrevImage);
+nextBtn.addEventListener('click', showNextImage);
 
 // Cerrar modal
 closeBtn.addEventListener('click', closeModal);
@@ -148,6 +190,14 @@ function closeModal() {
 document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
         closeModal();
+    }
+    // Navegación con flechas del teclado
+    if (imageModal.classList.contains('show')) {
+        if (e.key === 'ArrowLeft') {
+            showPrevImage();
+        } else if (e.key === 'ArrowRight') {
+            showNextImage();
+        }
     }
 });
 
