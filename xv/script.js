@@ -1,34 +1,47 @@
-// ========================
-// VARIABLES GLOBALES
-// ========================
+// ============================================
+// FOTOSHOT - LANDING PAGE XV AÑOS
+// ============================================
 
-let currentType = 'senoritas';  // Tipo seleccionado por defecto
-let currentFilter = 'default';  // Filtro seleccionado por defecto
+document.addEventListener('DOMContentLoaded', function () {
 
-// ========================
-// FILTRADO DE DOS NIVELES
-// ========================
+    // ========================
+    // VARIABLES GLOBALES
+    // ========================
 
-document.addEventListener('DOMContentLoaded', function() {
+    let currentType = 'senoritas';   // Tipo seleccionado por defecto
+    let currentFilter = 'default';   // Filtro seleccionado por defecto
+    let visibleImages = [];          // Lista de imágenes visibles según filtros
+    let currentImageIndex = 0;       // Índice de la imagen abierta en el modal
+
     const typeFilterButtons = document.querySelectorAll('.type-filter-btn');
     const categoryFilterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const galleryGrid = document.querySelector('.gallery-grid');
     const presesionFilterBtn = document.getElementById('presesion-filter');
+
+    const imageModal = document.getElementById('imageModal');
+    const modalImage = document.querySelector('.modal-image');
+    const closeBtn = document.querySelector('.close');
+    const prevBtn = document.querySelector('.modal-prev');
+    const nextBtn = document.querySelector('.modal-next');
+    const currentImageSpan = document.querySelector('.current-image');
+    const totalImagesSpan = document.querySelector('.total-images');
+
+    // ========================
+    // FILTRADO DE DOS NIVELES
+    // ========================
 
     // Filtros de tipo (Señoritas / Jóvenes)
     typeFilterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             currentType = this.getAttribute('data-type');
-            
-            // Actualizar botones activos
+
             typeFilterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
             // Mostrar/Ocultar botón "Presesión" según el tipo
-            if (currentType === 'jovenes') {
-                presesionFilterBtn.style.display = 'none';
-            } else {
-                presesionFilterBtn.style.display = 'inline-block';
+            if (presesionFilterBtn) {
+                presesionFilterBtn.style.display = (currentType === 'jovenes') ? 'none' : 'inline-block';
             }
 
             // Resetear filtro de categoría a "Por defecto"
@@ -36,26 +49,23 @@ document.addEventListener('DOMContentLoaded', function() {
             categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
             document.querySelector('[data-filter="default"]').classList.add('active');
 
-            // Aplicar filtros
             updateGallery();
         });
     });
 
-    // Filtros de categoría (Casual / Formal / Presesión)
+    // Filtros de categoría (Por defecto / Casual / Formal / Presesión)
     categoryFilterButtons.forEach(button => {
-        button.addEventListener('click', function() {
+        button.addEventListener('click', function () {
             currentFilter = this.getAttribute('data-filter');
-            
-            // Actualizar botones activos
+
             categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Aplicar filtros
             updateGallery();
         });
     });
 
-    // Función para actualizar la galería
+    // Función para actualizar la galería según los filtros
     function updateGallery() {
         galleryItems.forEach(item => {
             const itemType = item.getAttribute('data-type');
@@ -64,273 +74,196 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let shouldShow = false;
 
-            // Si el tipo coincide
             if (itemType === currentType) {
-                // Si el filtro es "por defecto", mostrar solo los items marcados con data-default
                 if (currentFilter === 'default') {
                     shouldShow = isDefault;
-                } 
-                // Si el filtro es una categoría específica, mostrar todos los de esa categoría
-                else if (itemCategory === currentFilter) {
+                } else if (itemCategory === currentFilter) {
                     shouldShow = true;
                 }
             }
 
-            // Mostrar u ocultar item
             if (shouldShow) {
                 item.classList.remove('hidden');
-                item.style.animation = 'fadeIn 0.5s ease-in';
             } else {
                 item.classList.add('hidden');
             }
         });
-        
-        // Actualizar listeners de imágenes después de cambiar filtros
-        setupImageClickListeners();
+
+        refreshVisibleImages();
     }
 
-    // Inicializar galería con valores por defecto
+    // Reconstruir lista de imágenes visibles (en orden visual)
+    function refreshVisibleImages() {
+        visibleImages = Array.from(document.querySelectorAll('.gallery-item:not(.hidden)'));
+    }
+
+    // ========================
+    // MODAL CON NAVEGACIÓN
+    // (delegación de eventos: SIEMPRE funciona,
+    //  sin importar cuántas veces cambien los filtros)
+    // ========================
+
+    galleryGrid.addEventListener('click', function (e) {
+        const item = e.target.closest('.gallery-item');
+        if (!item || item.classList.contains('hidden')) return;
+
+        refreshVisibleImages();
+        currentImageIndex = visibleImages.indexOf(item);
+        if (currentImageIndex === -1) return;
+
+        openModal();
+    });
+
+    function openModal() {
+        showImage(currentImageIndex);
+        imageModal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function showImage(index) {
+        const img = visibleImages[index].querySelector('img');
+
+        // Pequeña transición de fade entre imágenes
+        modalImage.classList.add('changing');
+        setTimeout(() => {
+            modalImage.src = img.src;
+            modalImage.alt = img.alt;
+            modalImage.classList.remove('changing');
+        }, 120);
+
+        currentImageSpan.textContent = index + 1;
+        totalImagesSpan.textContent = visibleImages.length;
+        updateNavButtons();
+    }
+
+    function updateNavButtons() {
+        prevBtn.disabled = currentImageIndex === 0;
+        nextBtn.disabled = currentImageIndex === visibleImages.length - 1;
+    }
+
+    function showNextImage() {
+        if (currentImageIndex < visibleImages.length - 1) {
+            currentImageIndex++;
+            showImage(currentImageIndex);
+        }
+    }
+
+    function showPrevImage() {
+        if (currentImageIndex > 0) {
+            currentImageIndex--;
+            showImage(currentImageIndex);
+        }
+    }
+
+    function closeModal() {
+        imageModal.classList.remove('show');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Listeners del modal
+    prevBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showPrevImage();
+    });
+
+    nextBtn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        showNextImage();
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+
+    imageModal.addEventListener('click', function (e) {
+        // Cerrar solo si se hace click en el fondo oscuro
+        if (e.target === imageModal) {
+            closeModal();
+        }
+    });
+
+    // Navegación con teclado
+    document.addEventListener('keydown', function (e) {
+        if (!imageModal.classList.contains('show')) return;
+
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowLeft') showPrevImage();
+        if (e.key === 'ArrowRight') showNextImage();
+    });
+
+    // Navegación táctil (swipe) en móvil
+    let touchStartX = 0;
+    modalImage.addEventListener('touchstart', function (e) {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
+
+    modalImage.addEventListener('touchend', function (e) {
+        const touchEndX = e.changedTouches[0].screenX;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) showNextImage();   // Swipe izquierda → siguiente
+            else showPrevImage();            // Swipe derecha → anterior
+        }
+    }, { passive: true });
+
+    // ========================
+    // INICIALIZAR GALERÍA
+    // ========================
+
     updateGallery();
-});
 
-// ========================
-// VARIABLES DEL MODAL
-// ========================
+    // ========================
+    // NAVEGACIÓN SUAVE (anclas)
+    // ========================
 
-let currentImageIndex = 0;
-let visibleImages = [];
-
-// ========================
-// MODAL DE IMAGEN AMPLIADA
-// ========================
-
-const imageModal = document.getElementById('imageModal');
-const modalImage = document.querySelector('.modal-image');
-const closeBtn = document.querySelector('.close');
-const prevBtn = document.querySelector('.modal-prev');
-const nextBtn = document.querySelector('.modal-next');
-const currentImageSpan = document.querySelector('.current-image');
-const totalImagesSpan = document.querySelector('.total-images');
-
-// Configurar listeners de imágenes
-function setupImageClickListeners() {
-    // Obtener SOLO las imágenes que NO están ocultas
-    const items = document.querySelectorAll('.gallery-item');
-    visibleImages = [];
-    
-    items.forEach((item, index) => {
-        // Solo agregar las que no están ocultas
-        if (!item.classList.contains('hidden')) {
-            visibleImages.push(item);
-        }
-    });
-    
-    console.log('Imágenes visibles detectadas:', visibleImages.length);
-    totalImagesSpan.textContent = visibleImages.length;
-    
-    // Agregar event listeners a TODAS las imágenes visibles
-    visibleImages.forEach((item, index) => {
-        // Remover listeners anteriores
-        const newItem = item.cloneNode(true);
-        item.parentNode.replaceChild(newItem, item);
-        
-        // Agregar nuevo listener
-        newItem.addEventListener('click', function() {
-            currentImageIndex = index;
-            openModal(newItem.querySelector('img'));
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && document.querySelector(href)) {
+                e.preventDefault();
+                document.querySelector(href).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
         });
-        
-        // Actualizar en el array
-        visibleImages[index] = newItem;
     });
-}
 
-function openModal(imgElement) {
-    const imgSrc = imgElement.src;
-    const imgAlt = imgElement.alt;
-    
-    modalImage.src = imgSrc;
-    modalImage.alt = imgAlt;
-    currentImageSpan.textContent = currentImageIndex + 1;
-    totalImagesSpan.textContent = visibleImages.length;
-    
-    imageModal.classList.add('show');
-    document.body.style.overflow = 'hidden';
-    
-    updateNavButtons();
-}
+    // ========================
+    // SCROLL ANIMATIONS
+    // ========================
 
-function updateNavButtons() {
-    const totalImages = visibleImages.length;
-    
-    // Deshabilitar botón anterior si es la primera imagen
-    prevBtn.disabled = currentImageIndex === 0;
-    
-    // Deshabilitar botón siguiente si es la última imagen
-    nextBtn.disabled = currentImageIndex === totalImages - 1;
-}
+    const observer = new IntersectionObserver(function (entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, { threshold: 0.1, rootMargin: '0px 0px -100px 0px' });
 
-function showNextImage() {
-    if (currentImageIndex < visibleImages.length - 1) {
-        currentImageIndex++;
-        const img = visibleImages[currentImageIndex].querySelector('img');
-        openModal(img);
-    }
-}
+    document.querySelectorAll('.package-card, .process-card, .about-card').forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(20px)';
+        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+        observer.observe(el);
+    });
 
-function showPrevImage() {
-    if (currentImageIndex > 0) {
-        currentImageIndex--;
-        const img = visibleImages[currentImageIndex].querySelector('img');
-        openModal(img);
-    }
-}
+    // ========================
+    // ENLACES EXTERNOS
+    // ========================
 
-// Event listeners para navegación
-prevBtn.addEventListener('click', showPrevImage);
-nextBtn.addEventListener('click', showNextImage);
+    document.querySelectorAll('a[href*="instagram"], a[href*="facebook"], a[href*="youtube"]').forEach(link => {
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+    });
 
-// Cerrar modal
-closeBtn.addEventListener('click', closeModal);
-imageModal.addEventListener('click', function(e) {
-    if (e.target === imageModal) {
-        closeModal();
-    }
-});
+    // ========================
+    // MANEJO DE ERRORES DE IMÁGENES
+    // ========================
 
-function closeModal() {
-    imageModal.classList.remove('show');
-    document.body.style.overflow = 'auto';
-}
-
-// Cerrar modal con ESC
-document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-        closeModal();
-    }
-    // Navegación con flechas del teclado
-    if (imageModal.classList.contains('show')) {
-        if (e.key === 'ArrowLeft') {
-            showPrevImage();
-        } else if (e.key === 'ArrowRight') {
-            showNextImage();
-        }
-    }
-});
-
-// ========================
-// ANIMACIÓN CSS FADE IN
-// ========================
-
-const style = document.createElement('style');
-style.textContent = `
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: scale(0.95);
-        }
-        to {
-            opacity: 1;
-            transform: scale(1);
-        }
-    }
-`;
-document.head.appendChild(style);
-
-// ========================
-// NAVEGACIÓN SUAVE
-// ========================
-
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        const href = this.getAttribute('href');
-        
-        if (href !== '#' && document.querySelector(href)) {
-            e.preventDefault();
-            const target = document.querySelector(href);
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+    document.querySelectorAll('img').forEach(img => {
+        img.addEventListener('error', function () {
+            console.warn('Imagen no encontrada:', this.src);
+        });
     });
 });
-
-// ========================
-// SCROLL ANIMATIONS
-// ========================
-
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -100px 0px'
-};
-
-const observer = new IntersectionObserver(function(entries) {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.package-card, .process-card, .about-card').forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    observer.observe(el);
-});
-
-// ========================
-// RASTREO DE CLICS
-// ========================
-
-document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
-    link.addEventListener('click', function() {
-        console.log('Usuario haciendo clic en WhatsApp:', this.href);
-    });
-});
-
-// ========================
-// PRECARGA DE IMÁGENES
-// ========================
-
-function preloadImages(imageArray) {
-    imageArray.forEach(imageSrc => {
-        const img = new Image();
-        img.src = imageSrc;
-    });
-}
-
-preloadImages(['assets/images/hero-01.jpg', 'assets/images/hero-02.jpg', 'assets/images/about-01.jpg']);
-
-// ========================
-// VALIDACIÓN DE ENLACES
-// ========================
-
-document.querySelectorAll('a[href*="instagram"], a[href*="facebook"]').forEach(link => {
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-});
-
-// ========================
-// MANEJO DE ERRORES DE IMÁGENES
-// ========================
-
-document.querySelectorAll('img').forEach(img => {
-    img.addEventListener('error', function() {
-        console.warn('Imagen no encontrada:', this.src);
-    });
-});
-
-// ========================
-// DETECCIÓN DE DISPOSITIVO
-// ========================
-
-function isMobileDevice() {
-    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
-if (isMobileDevice()) {
-    document.body.classList.add('mobile-device');
-}

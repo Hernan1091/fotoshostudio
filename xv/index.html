@@ -364,12 +364,27 @@
 
         <!-- MODAL DE IMAGEN AMPLIADA -->
         <div id="imageModal" class="image-modal">
-            <span class="close">&times;</span>
-            <button class="modal-nav modal-prev">&lt;</button>
-            <img class="modal-image" src="" alt="" />
-            <button class="modal-nav modal-next">&gt;</button>
+            <button class="close" aria-label="Cerrar">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+            </button>
+            <div class="modal-content">
+                <button class="modal-nav modal-prev" aria-label="Imagen anterior">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                    </svg>
+                </button>
+                <img class="modal-image" src="" alt="" />
+                <button class="modal-nav modal-next" aria-label="Imagen siguiente">
+                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                    </svg>
+                </button>
+            </div>
             <div class="modal-counter">
-                <span class="current-image">1</span> / <span class="total-images">1</span>
+                <span class="current-image">1</span>&nbsp;/&nbsp;<span class="total-images">1</span>
             </div>
         </div>
 
