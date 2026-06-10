@@ -12,13 +12,18 @@
     <header class="header">
         <div class="header-container">
             <div class="logo">
-                <img src="logo.png" alt="Fotoshot Studio" class="logo-img" />
+                <img src="../logo.png" alt="Fotoshot Studio" class="logo-img" />
                 <span class="logo-text">fotoshot</span>
             </div>
-            <button class="cta-header">Contáctanos</button>
+            <div class="cta-header-container">
+                <a href="https://wa.me/528332366963?text=Hola,%20me%20gustaría%20conocer%20más%20sobre%20los%20paquetes%20de%20XV%20años" 
+                   class="cta-header" target="_blank">
+                    Contáctanos
+                </a>
+            </div>
         </div>
     </header>
- 
+
     <main>
         <!-- HERO SECTION -->
         <section id="inicio" class="hero">
@@ -38,14 +43,14 @@
             </div>
             <div class="hero-gallery">
                 <div class="hero-image hero-main">
-                    <img src="hero-01.jpeg" alt="Sesión XV años" />
+                    <img src="hero-01.jpg" alt="Sesión XV años" />
                 </div>
                 <div class="hero-image hero-secondary">
-                    <img src="hero-02.jpeg" alt="Sesión XV años" />
+                    <img src="hero-02.jpg" alt="Sesión XV años" />
                 </div>
             </div>
         </section>
- 
+
         <!-- SOBRE NOSOTROS -->
         <section id="nosotros" class="about">
             <div class="about-content">
@@ -61,7 +66,7 @@
                 <p class="about-mission">
                     Hoy, junto con mi equipo, me dedico a crear XV años que se sienten, no solo que se ven bien.
                 </p>
- 
+
                 <div class="about-grid">
                     <div class="about-card">
                         <h3>1,500+</h3>
@@ -78,15 +83,15 @@
                 </div>
             </div>
             <div class="about-image">
-                <img src="about-01.jpeg" alt="Fotoshot Studio en acción" />
+                <img src="about-01.jpg" alt="Fotoshot Studio en acción" />
             </div>
         </section>
- 
+
         <!-- NUESTRO PROCESO -->
         <section id="servicios" class="process">
             <h2>Nuestra ruta de la emoción</h2>
             <p class="section-subtitle">Un proceso pensado para capturar cada momento con autenticidad</p>
- 
+
             <div class="process-grid">
                 <div class="process-card">
                     <div class="process-number">1</div>
@@ -94,21 +99,21 @@
                     <p>Conocemos a la XV y la ayudamos a sentirse cómoda frente a la cámara. 
                        Discutimos ideas, conceptos y visiones para su sesión.</p>
                 </div>
- 
+
                 <div class="process-card">
                     <div class="process-number">2</div>
                     <h3>Sesión Casual</h3>
                     <p>Desarrollamos ideas y conceptos que reflejen su personalidad. 
                        Fotografías auténticas en locaciones especiales que resalten su estilo.</p>
                 </div>
- 
+
                 <div class="process-card">
                     <div class="process-number">3</div>
                     <h3>Sesión XV</h3>
                     <p>Creamos imágenes que se convierten en parte de la historia de sus XV años. 
                        Elegancia, profesionalismo y emoción en cada shot.</p>
                 </div>
- 
+
                 <div class="process-card">
                     <div class="process-number">4</div>
                     <h3>Fiesta</h3>
@@ -117,73 +122,317 @@
                 </div>
             </div>
         </section>
- 
+
         <!-- GALERÍA -->
         <section id="galeria" class="gallery">
             <h2>Nuestro trabajo</h2>
             <p class="section-subtitle">Momentos capturados con emoción y profesionalismo</p>
- 
+
+            <!-- FILTROS DE TIPO (Señoritas / Jóvenes) -->
+            <div class="gallery-type-filters">
+                <button class="type-filter-btn active" data-type="senoritas">Señoritas</button>
+                <button class="type-filter-btn" data-type="jovenes">Jóvenes</button>
+            </div>
+
+            <!-- FILTROS DE CATEGORÍA (Casual / Formal / Fiesta) -->
             <div class="gallery-filters">
-                <button class="filter-btn active" data-filter="all">Todos</button>
+                <button class="filter-btn active" data-filter="default">Por defecto</button>
                 <button class="filter-btn" data-filter="casual">Sesiones Casuales</button>
                 <button class="filter-btn" data-filter="formal">Sesiones XV</button>
                 <button class="filter-btn" data-filter="fiesta">Fiestas</button>
             </div>
- 
+
             <div class="gallery-grid">
-                <!-- CASUAL -->
-                <div class="gallery-item" data-category="casual">
-                    <img src="casual-01.jpeg" alt="Sesión casual XV años" loading="lazy" />
+                <!-- SEÑORITAS - CASUAL -->
+                <div class="gallery-item" data-type="senoritas" data-category="casual" data-default="true">
+                    <img src="casual-senoritas-01.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="casual">
-                    <img src="casual-02.jpeg" alt="Sesión casual XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual" data-default="true">
+                    <img src="casual-senoritas-02.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="casual">
-                    <img src="casual-03.jpeg" alt="Sesión casual XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual" data-default="true">
+                    <img src="casual-senoritas-03.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="casual">
-                    <img src="casual-04.jpeg" alt="Sesión casual XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual" data-default="true">
+                    <img src="casual-senoritas-04.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="casual">
-                    <img src="casual-05.jpeg" alt="Sesión casual XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual" data-default="true">
+                    <img src="casual-senoritas-05.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
- 
-                <!-- FORMAL -->
-                <div class="gallery-item" data-category="formal">
-                    <img src="formal-01.jpeg" alt="Sesión XV años con vestido" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-06.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="formal">
-                    <img src="formal-02.jpeg" alt="Sesión XV años con vestido" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-07.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="formal">
-                    <img src="formal-03.jpeg" alt="Sesión XV años con vestido" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-08.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="formal">
-                    <img src="formal-04.jpeg" alt="Sesión XV años con vestido" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-09.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="formal">
-                    <img src="formal-05.jpeg" alt="Sesión XV años con vestido" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-10.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
- 
-                <!-- FIESTA -->
-                <div class="gallery-item" data-category="fiesta">
-                    <img src="fiesta-01.jpeg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-11.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="fiesta">
-                    <img src="fiesta-02.jpeg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-12.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="fiesta">
-                    <img src="fiesta-03.jpeg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-13.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="fiesta">
-                    <img src="fiesta-04.jpeg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-14.jpg" alt="Sesión casual" loading="lazy" />
                 </div>
-                <div class="gallery-item" data-category="fiesta">
-                    <img src="fiesta-05.jpeg" alt="Cobertura de fiesta XV años" loading="lazy" />
+                <div class="gallery-item" data-type="senoritas" data-category="casual">
+                    <img src="casual-senoritas-15.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+
+                <!-- SEÑORITAS - FORMAL -->
+                <div class="gallery-item" data-type="senoritas" data-category="formal" data-default="true">
+                    <img src="formal-senoritas-01.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal" data-default="true">
+                    <img src="formal-senoritas-02.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal" data-default="true">
+                    <img src="formal-senoritas-03.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal" data-default="true">
+                    <img src="formal-senoritas-04.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal" data-default="true">
+                    <img src="formal-senoritas-05.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-06.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-07.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-08.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-09.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-10.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-11.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-12.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-13.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-14.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="formal">
+                    <img src="formal-senoritas-15.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+
+                <!-- SEÑORITAS - FIESTA -->
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta" data-default="true">
+                    <img src="fiesta-senoritas-01.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta" data-default="true">
+                    <img src="fiesta-senoritas-02.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta" data-default="true">
+                    <img src="fiesta-senoritas-03.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta" data-default="true">
+                    <img src="fiesta-senoritas-04.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta" data-default="true">
+                    <img src="fiesta-senoritas-05.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-06.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-07.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-08.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-09.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-10.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-11.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-12.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-13.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-14.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="senoritas" data-category="fiesta">
+                    <img src="fiesta-senoritas-15.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+
+                <!-- JÓVENES - CASUAL -->
+                <div class="gallery-item" data-type="jovenes" data-category="casual" data-default="true">
+                    <img src="casual-jovenes-01.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual" data-default="true">
+                    <img src="casual-jovenes-02.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual" data-default="true">
+                    <img src="casual-jovenes-03.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual" data-default="true">
+                    <img src="casual-jovenes-04.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual" data-default="true">
+                    <img src="casual-jovenes-05.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-06.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-07.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-08.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-09.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-10.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-11.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-12.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-13.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-14.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="casual">
+                    <img src="casual-jovenes-15.jpg" alt="Sesión casual" loading="lazy" />
+                </div>
+
+                <!-- JÓVENES - FORMAL -->
+                <div class="gallery-item" data-type="jovenes" data-category="formal" data-default="true">
+                    <img src="formal-jovenes-01.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal" data-default="true">
+                    <img src="formal-jovenes-02.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal" data-default="true">
+                    <img src="formal-jovenes-03.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal" data-default="true">
+                    <img src="formal-jovenes-04.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal" data-default="true">
+                    <img src="formal-jovenes-05.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-06.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-07.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-08.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-09.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-10.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-11.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-12.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-13.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-14.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="formal">
+                    <img src="formal-jovenes-15.jpg" alt="Sesión XV años" loading="lazy" />
+                </div>
+
+                <!-- JÓVENES - FIESTA -->
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta" data-default="true">
+                    <img src="fiesta-jovenes-01.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta" data-default="true">
+                    <img src="fiesta-jovenes-02.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta" data-default="true">
+                    <img src="fiesta-jovenes-03.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta" data-default="true">
+                    <img src="fiesta-jovenes-04.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta" data-default="true">
+                    <img src="fiesta-jovenes-05.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-06.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-07.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-08.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-09.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-10.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-11.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-12.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-13.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-14.jpg" alt="Cobertura fiesta" loading="lazy" />
+                </div>
+                <div class="gallery-item" data-type="jovenes" data-category="fiesta">
+                    <img src="fiesta-jovenes-15.jpg" alt="Cobertura fiesta" loading="lazy" />
                 </div>
             </div>
         </section>
- 
+
+        <!-- MODAL DE IMAGEN AMPLIADA -->
+        <div id="imageModal" class="image-modal">
+            <span class="close">&times;</span>
+            <img class="modal-image" src="" alt="" />
+        </div>
+
         <!-- REELS / INSTAGRAM -->
         <section class="reels">
             <h2>Momentos en movimiento</h2>
@@ -201,7 +450,7 @@
                         <span>Ver más en Instagram</span>
                     </div>
                 </a>
- 
+
                 <a href="https://facebook.com/fotoshotestudio" target="_blank" class="reel-link">
                     <div class="reel-placeholder facebook">
                         <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
@@ -213,12 +462,12 @@
                 </a>
             </div>
         </section>
- 
+
         <!-- PAQUETES -->
         <section id="paquetes" class="packages">
             <h2>Nuestros paquetes</h2>
             <p class="section-subtitle">Elige el que mejor se adapte a tu visión</p>
- 
+
             <div class="packages-grid">
                 <!-- PAQUETE ESENCIAL -->
                 <div class="package-card">
@@ -241,7 +490,7 @@
                         Solicitar
                     </a>
                 </div>
- 
+
                 <!-- PAQUETE EXPERIENCIA -->
                 <div class="package-card">
                     <div class="package-header">
@@ -262,7 +511,7 @@
                         Solicitar
                     </a>
                 </div>
- 
+
                 <!-- PAQUETE PRODUCCIÓN -->
                 <div class="package-card featured">
                     <div class="package-badge">RECOMENDADO</div>
@@ -284,7 +533,7 @@
                         Solicitar
                     </a>
                 </div>
- 
+
                 <!-- PAQUETE SIGNATURE -->
                 <div class="package-card">
                     <div class="package-header">
@@ -307,7 +556,7 @@
                     </a>
                 </div>
             </div>
- 
+
             <!-- SERVICIOS ADICIONALES -->
             <div class="additional-services">
                 <h3>Servicios Adicionales</h3>
@@ -354,7 +603,7 @@
                     </div>
                 </div>
             </div>
- 
+
             <!-- SESIÓN SOLO CASUAL -->
             <div class="solo-session">
                 <h3>¿Solo quieres tu sesión de XV?</h3>
@@ -373,12 +622,12 @@
                 </a>
             </div>
         </section>
- 
+
         <!-- CONTACTO -->
         <section id="contacto" class="contact">
             <h2>Hablemos de tu XV</h2>
             <p class="section-subtitle">Nos encanta conocer nuevas historias</p>
- 
+
             <div class="contact-info">
                 <div class="contact-item">
                     <h3>📍 Ubicación</h3>
@@ -396,7 +645,7 @@
                     </p>
                 </div>
             </div>
- 
+
             <div class="contact-cta">
                 <p>Escríbenos ahora y cuéntanos sobre tu XV</p>
                 <a href="https://wa.me/528332366963?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20XV%20a%C3%B1os" 
@@ -406,7 +655,7 @@
             </div>
         </section>
     </main>
- 
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-content">
@@ -414,8 +663,7 @@
             <p>Fotografía y video profesional para XV años</p>
         </div>
     </footer>
- 
+
     <script src="script.js"></script>
 </body>
 </html>
- 

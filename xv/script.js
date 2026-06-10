@@ -1,36 +1,152 @@
 // ========================
-// FILTRADO DE GALERÍA
+// VARIABLES GLOBALES
+// ========================
+
+let currentType = 'senoritas';  // Tipo seleccionado por defecto
+let currentFilter = 'default';  // Filtro seleccionado por defecto
+
+// ========================
+// FILTRADO DE DOS NIVELES
 // ========================
 
 document.addEventListener('DOMContentLoaded', function() {
-    const filterButtons = document.querySelectorAll('.filter-btn');
+    const typeFilterButtons = document.querySelectorAll('.type-filter-btn');
+    const categoryFilterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
-    filterButtons.forEach(button => {
+    // Filtros de tipo (Señoritas / Jóvenes)
+    typeFilterButtons.forEach(button => {
         button.addEventListener('click', function() {
-            const filter = this.getAttribute('data-filter');
-
+            currentType = this.getAttribute('data-type');
+            
             // Actualizar botones activos
-            filterButtons.forEach(btn => btn.classList.remove('active'));
+            typeFilterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
 
-            // Filtrar items
-            galleryItems.forEach(item => {
-                const category = item.getAttribute('data-category');
-                
-                if (filter === 'all' || category === filter) {
-                    item.classList.remove('hidden');
-                    // Animación de entrada
-                    item.style.animation = 'fadeIn 0.5s ease-in';
-                } else {
-                    item.classList.add('hidden');
-                }
-            });
+            // Resetear filtro de categoría a "Por defecto"
+            currentFilter = 'default';
+            categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('[data-filter="default"]').classList.add('active');
+
+            // Aplicar filtros
+            updateGallery();
         });
+    });
+
+    // Filtros de categoría (Casual / Formal / Fiesta)
+    categoryFilterButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            currentFilter = this.getAttribute('data-filter');
+            
+            // Actualizar botones activos
+            categoryFilterButtons.forEach(btn => btn.classList.remove('active'));
+            this.classList.add('active');
+
+            // Aplicar filtros
+            updateGallery();
+        });
+    });
+
+    // Función para actualizar la galería
+    function updateGallery() {
+        galleryItems.forEach(item => {
+            const itemType = item.getAttribute('data-type');
+            const itemCategory = item.getAttribute('data-category');
+            const isDefault = item.getAttribute('data-default') === 'true';
+
+            let shouldShow = false;
+
+            // Si el tipo coincide
+            if (itemType === currentType) {
+                // Si el filtro es "por defecto", mostrar solo los items marcados con data-default
+                if (currentFilter === 'default') {
+                    shouldShow = isDefault;
+                } 
+                // Si el filtro es una categoría específica, mostrar todos los de esa categoría
+                else if (itemCategory === currentFilter) {
+                    shouldShow = true;
+                }
+            }
+
+            // Mostrar u ocultar item
+            if (shouldShow) {
+                item.classList.remove('hidden');
+                item.style.animation = 'fadeIn 0.5s ease-in';
+            } else {
+                item.classList.add('hidden');
+            }
+        });
+    }
+
+    // Inicializar galería con valores por defecto
+    updateGallery();
+});
+
+// ========================
+// MODAL DE IMAGEN AMPLIADA
+// ========================
+
+const imageModal = document.getElementById('imageModal');
+const modalImage = document.querySelector('.modal-image');
+const closeBtn = document.querySelector('.close');
+
+// Abrir modal al hacer click en una imagen
+document.querySelectorAll('.gallery-item:not(.hidden) img').forEach(img => {
+    img.parentElement.addEventListener('click', function() {
+        // Evitar abrir modal si el item está oculto
+        if (!this.classList.contains('hidden')) {
+            const imgSrc = this.querySelector('img').src;
+            const imgAlt = this.querySelector('img').alt;
+            
+            modalImage.src = imgSrc;
+            modalImage.alt = imgAlt;
+            imageModal.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
     });
 });
 
-// Animación CSS para fade in
+// Re-agregar listeners cuando se actualiza la galería
+function addImageModalListeners() {
+    document.querySelectorAll('.gallery-item:not(.hidden) img').forEach(img => {
+        img.parentElement.addEventListener('click', function() {
+            if (!this.classList.contains('hidden')) {
+                const imgSrc = this.querySelector('img').src;
+                const imgAlt = this.querySelector('img').alt;
+                
+                modalImage.src = imgSrc;
+                modalImage.alt = imgAlt;
+                imageModal.classList.add('show');
+                document.body.style.overflow = 'hidden';
+            }
+        });
+    });
+}
+
+// Cerrar modal
+closeBtn.addEventListener('click', closeModal);
+imageModal.addEventListener('click', function(e) {
+    if (e.target === imageModal) {
+        closeModal();
+    }
+});
+
+function closeModal() {
+    imageModal.classList.remove('show');
+    document.body.style.overflow = 'auto';
+}
+
+// Cerrar modal con ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeModal();
+    }
+});
+
+// ========================
+// ANIMACIÓN CSS FADE IN
+// ========================
+
 const style = document.createElement('style');
 style.textContent = `
     @keyframes fadeIn {
@@ -54,7 +170,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         const href = this.getAttribute('href');
         
-        // Solo prevenir si es un enlace interno
         if (href !== '#' && document.querySelector(href)) {
             e.preventDefault();
             const target = document.querySelector(href);
@@ -62,23 +177,9 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 behavior: 'smooth',
                 block: 'start'
             });
-
-            // Cerrar menú móvil si está abierto (para futuros expandibles)
-            closeNav();
         }
     });
 });
-
-// ========================
-// BOTÓN CTA EN HEADER
-// ========================
-
-const ctaHeader = document.querySelector('.cta-header');
-if (ctaHeader) {
-    ctaHeader.addEventListener('click', function() {
-        window.open('https://wa.me/528332366963?text=Hola!%20Me%20gustar%C3%ADa%20conocer%20m%C3%A1s%20sobre%20tus%20servicios%20de%20XV%20a%C3%B1os', '_blank');
-    });
-}
 
 // ========================
 // SCROLL ANIMATIONS
@@ -98,7 +199,6 @@ const observer = new IntersectionObserver(function(entries) {
     });
 }, observerOptions);
 
-// Observar elementos para animación
 document.querySelectorAll('.package-card, .process-card, .about-card').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(20px)';
@@ -107,21 +207,11 @@ document.querySelectorAll('.package-card, .process-card, .about-card').forEach(e
 });
 
 // ========================
-// FUNCIONES AUXILIARES
+// RASTREO DE CLICS
 // ========================
 
-function closeNav() {
-    // Función vacía para expansión futura
-}
-
-// ========================
-// TRACKING Y ANALYTICS (Opcional)
-// ========================
-
-// Rastrear clics en botones de WhatsApp
 document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
     link.addEventListener('click', function() {
-        // Aquí puedes agregar analytics si lo deseas
         console.log('Usuario haciendo clic en WhatsApp:', this.href);
     });
 });
@@ -137,14 +227,12 @@ function preloadImages(imageArray) {
     });
 }
 
-// Precargar imágenes hero
 preloadImages(['hero-01.jpg', 'hero-02.jpg', 'about-01.jpg']);
 
 // ========================
 // VALIDACIÓN DE ENLACES
 // ========================
 
-// Asegurar que los enlaces de redes sociales se abren en nueva pestaña
 document.querySelectorAll('a[href*="instagram"], a[href*="facebook"]').forEach(link => {
     link.setAttribute('target', '_blank');
     link.setAttribute('rel', 'noopener noreferrer');
@@ -157,42 +245,17 @@ document.querySelectorAll('a[href*="instagram"], a[href*="facebook"]').forEach(l
 document.querySelectorAll('img').forEach(img => {
     img.addEventListener('error', function() {
         console.warn('Imagen no encontrada:', this.src);
-        // Opcional: mostrar imagen de fallback
-        // this.src = 'fallback-image.jpg';
     });
 });
 
 // ========================
-// DETECCIÓN DE DISPOSITIVO MÓVIL
+// DETECCIÓN DE DISPOSITIVO
 // ========================
 
 function isMobileDevice() {
     return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
-// Ajustar comportamiento en móvil si es necesario
 if (isMobileDevice()) {
     document.body.classList.add('mobile-device');
 }
-
-// ========================
-// CONTADOR DE VISITAS (Opcional - requiere backend)
-// ========================
-
-// Descomentar si quieres agregar tracking básico
-/*
-function trackVisit() {
-    fetch('/api/track-visit', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-            timestamp: new Date(),
-            userAgent: navigator.userAgent
-        })
-    }).catch(err => console.log('Tracking error:', err));
-}
-
-trackVisit();
-*/
