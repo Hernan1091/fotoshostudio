@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const typeFilterButtons = document.querySelectorAll('.type-filter-btn');
     const categoryFilterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
+    const presesionFilterBtn = document.getElementById('presesion-filter');
 
     // Filtros de tipo (Señoritas / Jóvenes)
     typeFilterButtons.forEach(button => {
@@ -22,6 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
             // Actualizar botones activos
             typeFilterButtons.forEach(btn => btn.classList.remove('active'));
             this.classList.add('active');
+
+            // Mostrar/Ocultar botón "Presesión" según el tipo
+            if (currentType === 'jovenes') {
+                presesionFilterBtn.style.display = 'none';
+            } else {
+                presesionFilterBtn.style.display = 'inline-block';
+            }
 
             // Resetear filtro de categoría a "Por defecto"
             currentFilter = 'default';
@@ -33,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Filtros de categoría (Casual / Formal / Fiesta)
+    // Filtros de categoría (Casual / Formal / Presesión)
     categoryFilterButtons.forEach(button => {
         button.addEventListener('click', function() {
             currentFilter = this.getAttribute('data-filter');
@@ -227,7 +235,7 @@ function preloadImages(imageArray) {
     });
 }
 
-preloadImages(['hero-01.jpg', 'hero-02.jpg', 'about-01.jpg']);
+preloadImages(['assets/images/hero-01.jpg', 'assets/images/hero-02.jpg', 'assets/images/about-01.jpg']);
 
 // ========================
 // VALIDACIÓN DE ENLACES
